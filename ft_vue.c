@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/24 17:53:18 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/05/28 18:00:19 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/07 16:33:32 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_point	**ft_iso(char **matrix, int nb_line, t_point p)
 		new_matrix[y] = (t_point *)malloc(sizeof(t_point) * ft_count(tmp));
 		while (tmp[++x])
 		{
-			z = (ft_atoi(tmp[x]) > 0 ? ft_atoi(tmp[x]) + p.z : 0);
+			z = (ft_atoi(tmp[x]) > 0 ? (ft_atoi(tmp[x]) + p.z) * 2 : 0);
 			new_matrix[y][x].x = (int)((x * DCL + TLE) * CTEISO1);
 			new_matrix[y][x].x -= ((y * DCL + TLE) * CTEISO2 + 450 + p.x);
 			new_matrix[y][x].y = (int)(-z + ((CTEISO1 / 2) * (x * DCL + TLE)));
@@ -63,6 +63,7 @@ static t_point	**ft_parallele(char **matrix, int nb_line, t_point p)
 
 	y = -1;
 	x = -1;
+	p.z = 1;
 	new_matrix = (t_point **)malloc(sizeof(t_point*) * nb_line);
 	while (++y < nb_line)
 	{
@@ -70,9 +71,9 @@ static t_point	**ft_parallele(char **matrix, int nb_line, t_point p)
 		new_matrix[y] = (t_point *)malloc(sizeof(t_point) * ft_count(tmp));
 		while (tmp[++x])
 		{
-			z = (ft_atoi(tmp[x]) > 0 ? ft_atoi(tmp[x]) + p.z : 0);
-			new_matrix[y][x].x = (int)((x * DCL + TLE) + CTE * z * 2 + p.x);
-			new_matrix[y][x].y = (int)((y * DCL + TLE));
+			z = (ft_atoi(tmp[x]) > 0 ? ft_atoi(tmp[x]) * p.z  : 0);
+			new_matrix[y][x].x = (int)((x * (WIN_HEIGHT / nb_line / 2) + TLE) + CTE * z * 2 + p.x);
+			new_matrix[y][x].y = (int)((y * (WIN_WIDTH / nb_line / 2) + TLE));
 			new_matrix[y][x].y += ((CTE / 2) * -(z) * 2 + p.y);
 			new_matrix[y][x].z = z;
 		}

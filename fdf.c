@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/06 14:23:19 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/11/04 17:50:44 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/07 15:57:01 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,9 @@ int				main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	while (get_next_line(fd, &line))
 	{
-	//	ft_putstr("\n\nline:\n");
-	//	ft_putstr(line);
 		if (!(tmp = create_matrix(line, index++)))
 			return (0);
 	}
-	ft_putstr(tmp);
 	close(fd);
 	if (check_matrix(tmp, index, &e))
 		return (-1);
