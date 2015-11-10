@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/06 14:23:19 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/11/07 15:57:01 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/10 18:30:57 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int				main(int ac, char **av)
 	close(fd);
 	if (check_matrix(tmp, index, &e))
 		return (-1);
-	e.matrix = transform(tmp, index, set_point());
+	transform(tmp, index, set_point(), &e);
 	e.mlx = mlx_init();
 	e.name = av[1];
 	e.win = mlx_new_window(e.mlx, WIN_HEIGHT, WIN_WIDTH, e.name);

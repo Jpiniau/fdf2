@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/13 11:51:35 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/05/28 17:55:47 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/10 18:40:03 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define CTE (0.9)
 # define CTEISO1 (0.9)
 # define CTEISO2 (0.9)
-# define TLE (50)
+# define TLE (15)
 # define DCL (25)
 # define RGB(r, g, b)(256 * 256 * (int)(r) + 256 * (int)(g) + (int)(b))
 
@@ -121,7 +121,7 @@ void			fdf(t_env e, int i);
 char			*create_matrix(char *line, int index);
 int				check_matrix(char *tmp_mat, int nb_line, t_env *e);
 t_point			set_point(void);
-t_matrix		transform(char *tmp_matrix, int nb_line, t_point p);
+void			transform(char *tmp_matrix, int nb_line, t_point p, t_env *e);
 t_matrix		ft_vue(char **mat, int nb_line, t_point p);
 int				ft_collect(t_point **matrix, t_env *e, t_size size);
 int				ft_line(t_env *e, t_line l);
