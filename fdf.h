@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/13 11:51:35 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/11/10 18:40:03 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/12 14:19:37 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define WIN_HEIGHT (1300)
+# define WIN_HEIGHT (2000)
 # define WIN_WIDTH (1300)
 # define CTE (0.9)
-# define CTEISO1 (0.9)
-# define CTEISO2 (0.9)
-# define TLE (15)
+# define CTEI1 (0.9)
+# define CTEI2 (0.9)
+# define TLE (25)
 # define DCL (25)
 # define RGB(r, g, b)(256 * 256 * (int)(r) + 256 * (int)(g) + (int)(b))
 
@@ -44,6 +44,8 @@
 # define R (15)
 # define I (34)
 # define P (35)
+# define Z (6)
+# define X (7)
 # define NUM_0 (48)
 # define NUM_1 (49)
 # define NUMPAD_PLUS (78)
@@ -71,6 +73,7 @@ typedef struct	s_point
 	int			x;
 	int			y;
 	int			z;
+	int			zo;
 }				t_point;
 
 typedef struct	s_matrix

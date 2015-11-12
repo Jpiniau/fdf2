@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 16:00:27 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/11/10 18:36:11 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/12 15:11:10 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,21 @@ static void		apply(t_env save, t_point p, int i)
 
 static t_point	switch_case(int action, t_point p, int *i)
 {
-	if (action == W)
-		p.y -= 10;
-	else if (action == D)
-		p.x += 10;
-	else if (action == A)
-		p.x -= 10;
-	else if (action == S)
-		p.y += 10;
+	
+	p.y = action == S ? p.y + 10 : p.y;
+	p.y = action == W ? p.y - 10 : p.y;
+	p.x = action == D ? p.x + 10 : p.x;
+	p.x = action == A ? p.x - 10 : p.y;
+	p.zo = action == Z ? p.y - 1 : p.y;
+	p.zo = action == X ? p.y + 1 : p.y;
+	else if (action == Z && p.zo > -9)
+		p.zo -= 1;
+	else if (action == X && p.zo < 12)
+		p.zo += 1;
 	else if (action == 126 && p.z < 7)
 		p.z = ft_z(p.z, action);
-	//p.z = (p.z >= 50 ? p.z : p.z + 10);
 	else if (action == 125 && p.z > -7)
 		p.z = ft_z(p.z, action);
-	//p.z = (p.z <= -50 ? p.z : p.z - 10);
 	else if (action == P)
 		*i = 0;
 	else if (action == I)
@@ -74,6 +75,7 @@ static t_point	switch_case(int action, t_point p, int *i)
 		p.x = 0;
 		p.y = 0;
 		p.z = 1;
+		p.zo = 0;
 	}
 	return (p);
 }
@@ -90,6 +92,7 @@ void			action(t_env env, int action)
 		p.x = 0;
 		p.y = 0;
 		p.z = 1;
+		p.zo = 0;
 		i = 0;
 		appel = 1;
 	}

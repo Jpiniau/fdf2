@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/06 14:23:19 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/11/10 18:30:57 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/12 14:02:05 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static int		ft_key_hook(int keycode)
 		exit(0);
 	else
 		action(e, keycode);
-	ft_putstr("\n");
-	ft_putnbr(keycode);
 	return (0);
 }
 
@@ -49,7 +47,6 @@ void			fdf(t_env e, int i)
 		ft_collect(e.matrix.iso, &e, e.size_mat);
 	mlx_put_image_to_window(e.mlx, e.win, e.im, 0, 0);
 	action(e, 666);
-//	mlx_key_hook(e.win, ft_key_hook, &e);
 	mlx_hook(e.win, 2, 4, ft_key_hook, &e);
 	mlx_loop(e.mlx);
 	mlx_destroy_image(e.mlx, e.im);
