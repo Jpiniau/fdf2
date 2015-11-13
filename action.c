@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 16:00:27 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/11/12 15:11:10 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/13 18:34:47 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,36 +41,30 @@ static int		ft_z(int z, int c)
 	return ((int)new_z);
 }
 
-static void		apply(t_env save, t_point p, int i)
+static void		apply(t_env save, t_point p, int i, int m)
 {
 	transform(save.matrix.def, save.size_mat.height, p, &save);
 	mlx_destroy_image(save.mlx, save.im);
 	save.im = mlx_new_image(save.mlx, WIN_HEIGHT, WIN_WIDTH);
-	fdf(save, i);
+	fdf(save, i, m);
 }
 
-static t_point	switch_case(int action, t_point p, int *i)
+static t_point	switch_case(int action, t_point p, int *i, int *m)
 {
 	
 	p.y = action == S ? p.y + 10 : p.y;
 	p.y = action == W ? p.y - 10 : p.y;
 	p.x = action == D ? p.x + 10 : p.x;
-	p.x = action == A ? p.x - 10 : p.y;
-	p.zo = action == Z ? p.y - 1 : p.y;
-	p.zo = action == X ? p.y + 1 : p.y;
-	else if (action == Z && p.zo > -9)
-		p.zo -= 1;
-	else if (action == X && p.zo < 12)
-		p.zo += 1;
-	else if (action == 126 && p.z < 7)
-		p.z = ft_z(p.z, action);
-	else if (action == 125 && p.z > -7)
-		p.z = ft_z(p.z, action);
-	else if (action == P)
-		*i = 0;
-	else if (action == I)
-		*i = 1;
-	else if (action == R)
+	p.x = action == A ? p.x - 10 : p.x;
+	p.zo = (action == Z && p.zo > -9) ? p.zo - 1 : p.zo;
+	p.zo = (action == X && p.zo < 12) ? p.zo + 1 : p.zo;
+	p.z = (action == 126 && p.z < 7) ? ft_z(p.z, action) : p.z;
+	p.z = (action == 125 && p.z > -7) ? ft_z(p.z, action) : p.z;
+	*i = action == P ? 0 : *i;
+	*i = action == I ? 1 : *i;
+	*m = action == H ? 0 : *m;
+	*m = action == M ? 1 : *m;
+	if (action == R)
 	{
 		p.x = 0;
 		p.y = 0;
@@ -86,6 +80,7 @@ void			action(t_env env, int action)
 	static t_point	p;
 	static int		appel;
 	static int		i;
+	static int		m;
 
 	if (appel != 1)
 	{
@@ -100,7 +95,7 @@ void			action(t_env env, int action)
 		save = env;
 	else
 	{
-		p = switch_case(action, p, &i);
-		apply(save, p, i);
+		p = switch_case(action, p, &i, &m);
+		apply(save, p, i, m);
 	}
 }

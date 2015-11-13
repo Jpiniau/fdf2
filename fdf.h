@@ -6,7 +6,7 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/13 11:51:35 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/11/12 14:19:37 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/13 18:35:21 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define P (35)
 # define Z (6)
 # define X (7)
+# define M (46)
+# define H (4)
 # define NUM_0 (48)
 # define NUM_1 (49)
 # define NUMPAD_PLUS (78)
@@ -120,7 +122,7 @@ typedef struct	s_dir
 	int			y;
 }				t_dir;
 
-void			fdf(t_env e, int i);
+void			fdf(t_env e, int i, int m);
 char			*create_matrix(char *line, int index);
 int				check_matrix(char *tmp_mat, int nb_line, t_env *e);
 t_point			set_point(void);
@@ -131,5 +133,6 @@ int				ft_line(t_env *e, t_line l);
 int				ft_pixel_put(t_env *e, t_point p, double z);
 void			action(t_env env, int action);
 t_line			ft_switch(t_line l);
+int				ft_menu(t_env *e);
 
 #endif

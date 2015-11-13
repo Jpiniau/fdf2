@@ -6,7 +6,7 @@
 #    By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/03 13:52:39 by jpiniau           #+#    #+#              #
-#    Updated: 2015/05/27 22:02:12 by jpiniau          ###   ########.fr        #
+#    Updated: 2015/11/13 17:34:12 by jpiniau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRC = fdf.c\
 	  ft_pixel_put.c\
 	  action.c\
 	  ft_line.c\
-	  ft_switch.c
+	  ft_switch.c\
+	  ft_menu.c
 
 OBJ = $(SRC:.c=.o)
 
