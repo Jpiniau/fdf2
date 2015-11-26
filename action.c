@@ -6,13 +6,12 @@
 /*   By: jpiniau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 16:00:27 by jpiniau           #+#    #+#             */
-/*   Updated: 2015/11/13 18:34:47 by jpiniau          ###   ########.fr       */
+/*   Updated: 2015/11/26 13:00:05 by jpiniau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
-#include <stdio.h>
 
 static int		ft_z(int z, int c)
 {
@@ -62,8 +61,10 @@ static t_point	switch_case(int action, t_point p, int *i, int *m)
 	p.z = (action == 125 && p.z > -7) ? ft_z(p.z, action) : p.z;
 	*i = action == P ? 0 : *i;
 	*i = action == I ? 1 : *i;
-	*m = action == H ? 0 : *m;
-	*m = action == M ? 1 : *m;
+	if (*m == 0)
+		*m = action == M ? 1 : *m;
+	else
+		*m = action == M ? 0 : *m;
 	if (action == R)
 	{
 		p.x = 0;
@@ -90,6 +91,7 @@ void			action(t_env env, int action)
 		p.zo = 0;
 		i = 0;
 		appel = 1;
+		m = 0;
 	}
 	if (action == 666)
 		save = env;
